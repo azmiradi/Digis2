@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="rsrp_color"
+            type="String" />
+    </data>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        tools:context=".ui.activity.MainActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:background="@color/black"
+            android:weightSum="3"
+            android:layout_marginTop="5dp"
+            android:paddingTop="?attr/actionBarSize">
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/rsrp"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:layout_height="match_parent"
+                    />
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/rsrq"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="match_parent"
+                    />
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/sinr"
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginTop="5dp"
+                    />
+
+         </LinearLayout>
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="0dp">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/app_bar"
+                style="@style/Widget.Digis.Toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:paddingStart="12dp"
+                android:paddingLeft="12dp"
+                android:paddingEnd="12dp"
+                android:paddingRight="12dp"
+                app:contentInsetStart="0dp"
+                app:navigationIcon="@drawable/menu"
+                app:title="@string/app_name" />
+        </com.google.android.material.appbar.AppBarLayout>
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="vertical"
+          android:id="@+id/counter"
+
+          android:layout_marginTop="?attr/actionBarSize"
+          >
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:weightSum="3"
+               android:background="@color/black"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal">
+                  <TextView
+                      android:layout_height="match_parent"
+                      android:textColor="@color/white"
+                      android:gravity="center"
+                      android:text="RSRP"
+                      android:layout_weight="1"
+                      android:layout_width="0dp"
+                       android:textSize="15dp"
+                      android:textStyle="bold"
+                      android:padding="5dp"
+
+                      android:background="@color/black"
+                      />
+
+                  <TextView
+                      android:layout_weight="1"
+                      android:layout_width="0dp"                      android:layout_height="match_parent"
+                      android:textColor="@color/white"
+                      android:gravity="center"
+                      android:text="RSRQ"
+                      android:id="@+id/rsrq_text"
+                      android:padding="5dp"
+
+                      android:textSize="15dp"
+                      android:textStyle="bold"
+                       android:background="@color/black"
+
+                      />
+
+
+                  <TextView
+                      android:layout_weight="1"
+                      android:layout_width="0dp"                      android:layout_height="match_parent"
+                      android:textColor="@color/white"
+                      android:gravity="center"
+                      android:text="SINR"
+                      android:id="@+id/sinr_text"
+                      android:textSize="15dp"
+                      android:padding="5dp"
+                      android:textStyle="bold"
+                       android:background="@color/black"
+
+                      />
+
+
+
+          </LinearLayout>
+          <androidx.recyclerview.widget.RecyclerView
+              android:id="@+id/recycler_view"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+               android:background="@color/white"
+              android:elevation="8dp"
+              app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+          </androidx.recyclerview.widget.RecyclerView>
+
+      </LinearLayout>
+           </FrameLayout>
+</layout>

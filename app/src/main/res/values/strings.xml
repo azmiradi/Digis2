@@ -3,4 +3,5 @@
     <string name="get_start">Get Start</string>
     <string name="charts">Charts</string>
     <string name="stop_get">Data fetching has been stopped</string>
+    <string name="zero">0</string>
 </resources>

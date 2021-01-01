@@ -3,7 +3,6 @@ package azmi.radi.com.digis.ui.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import azmi.radi.com.digis.utils.NavigationIconClickListener;
@@ -82,42 +81,38 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         binding.recyclerView.setLayoutManager(linearLayoutManager);
         signalStatuses = new ArrayList<>();
-        adapter = new SignalAdapter(signalStatuses);
+        adapter = new SignalAdapter(signalStatuses,this);
         binding.recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
 
     private void callSignal() {
-        signalViewModel.getSignal().observe(this, new Observer<SignalStatus>() {
-            @Override
-            public void onChanged(SignalStatus signalStatus) {
-                // get Time
-                Calendar c=Calendar.getInstance();
-                if (signalStatuses.size() == 0) {
-                    signalStatuses.add(signalStatus);
-                    adapter.notifyDataSetChanged();
-                } else {
-                    signalStatuses.add(signalStatus);
-                    adapter.notifyItemInserted(signalStatuses.size() - 1);
-
-                }
-                RSRPvalues.add(new Entry(time.size(), signalStatus.getRSRP()));
-                RSRQvalues.add(new Entry(time.size(), signalStatus.getRSRQ()));
-                SINRvalues.add(new Entry(time.size(), signalStatus.getSINR()));
-                time.add( c.get(Calendar.MINUTE)+":"+ c.get(Calendar.SECOND));
-                rsrpChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(time));
-                rsrqChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(time));
-                sinrChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(time));
-                if (RSRPvalues.size()==1)
-               {
-                   addChart();
-               }
-               else if (RSRPvalues.size()<15)
-               {
-                  updateCharts();
-               }
+        signalViewModel.getSignal().observe(this, signalStatus -> {
+            // get Time
+            Calendar c=Calendar.getInstance();
+            if (signalStatuses.size() == 0) {
+                signalStatuses.add(signalStatus);
+                adapter.notifyDataSetChanged();
+            } else {
+                signalStatuses.add(signalStatus);
+                adapter.notifyItemInserted(signalStatuses.size() - 1);
 
             }
+            RSRPvalues.add(new Entry(time.size(), signalStatus.getRSRP()));
+            RSRQvalues.add(new Entry(time.size(), signalStatus.getRSRQ()));
+            SINRvalues.add(new Entry(time.size(), signalStatus.getSINR()));
+            time.add( c.get(Calendar.MINUTE)+":"+ c.get(Calendar.SECOND));
+            rsrpChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(time));
+            rsrqChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(time));
+            sinrChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(time));
+            if (RSRPvalues.size()==1)
+           {
+               addChart();
+           }
+           else if (RSRPvalues.size()<15)
+           {
+              updateCharts();
+           }
 
         });
     }
@@ -158,11 +153,7 @@ public class MainActivity extends AppCompatActivity {
         l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         l.setDrawInside(false);
     }
-    private void onError(Throwable throwable) {
-        // if any error when Observable interval return here
-        System.out.println("error:");
 
-    }
     private void addChart() {
         rsrpChart.resetTracking();
         ArrayList<ILineDataSet> rsrpDataSetList = new ArrayList<>();
@@ -207,8 +198,8 @@ public class MainActivity extends AppCompatActivity {
                 this,
                 findViewById(R.id.counter),
                 new AccelerateDecelerateInterpolator(),
-                getResources().getDrawable(R.drawable.menu), // Menu open icon
-                getResources().getDrawable(R.drawable.close_menu))); // Menu close icon
+                getResources().getDrawable(R.drawable.menu,getTheme()), // Menu open icon
+                getResources().getDrawable(R.drawable.close_menu,getTheme()))); // Menu close icon
     }
 
     @Override

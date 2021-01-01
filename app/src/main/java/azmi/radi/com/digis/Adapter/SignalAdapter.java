@@ -69,24 +69,24 @@ public class SignalAdapter extends RecyclerView.Adapter<SignalAdapter.MyViewHold
         holder.signalListItemBinding.rsrp.setProgress(signalStatus.getRSRP() + TRANSFER_TO_POSITIVE);
         holder.signalListItemBinding.rsrpText.setText(String.valueOf(signalStatus.getRSRP()));
         if (signalStatus.getRSRP() <= -110) {
-            holder.signalListItemBinding.rsrp.setProgressColors(context.getColor(R.color.white), Color.parseColor(RSRP_COLORS[0]));
+            holder.signalListItemBinding.rsrp.setProgressColors(context.getColor(R.color.progress_back), Color.parseColor(RSRP_COLORS[0]));
         } else if (signalStatus.getRSRP() > -110 && signalStatus.getRSRP() <= -100) {
-            holder.signalListItemBinding.rsrp.setProgressColors(context.getColor(R.color.white), Color.parseColor(RSRP_COLORS[1]));
+            holder.signalListItemBinding.rsrp.setProgressColors(context.getColor(R.color.progress_back), Color.parseColor(RSRP_COLORS[1]));
 
         } else if (signalStatus.getRSRP() > -100 && signalStatus.getRSRP() <= -90) {
-            holder.signalListItemBinding.rsrp.setProgressColors(context.getColor(R.color.white), Color.parseColor(RSRP_COLORS[2]));
+            holder.signalListItemBinding.rsrp.setProgressColors(context.getColor(R.color.progress_back), Color.parseColor(RSRP_COLORS[2]));
 
         } else if (signalStatus.getRSRP() > -90 && signalStatus.getRSRP() <= -80) {
-            holder.signalListItemBinding.rsrp.setProgressColors(context.getColor(R.color.white), Color.parseColor(RSRP_COLORS[3]));
+            holder.signalListItemBinding.rsrp.setProgressColors(context.getColor(R.color.progress_back), Color.parseColor(RSRP_COLORS[3]));
 
         } else if (signalStatus.getRSRP() > -80 && signalStatus.getRSRP() <= -70) {
-            holder.signalListItemBinding.rsrp.setProgressColors(context.getColor(R.color.white), Color.parseColor(RSRP_COLORS[4]));
+            holder.signalListItemBinding.rsrp.setProgressColors(context.getColor(R.color.progress_back), Color.parseColor(RSRP_COLORS[4]));
 
         } else if (signalStatus.getRSRP() > -70 && signalStatus.getRSRP() < -60) {
-            holder.signalListItemBinding.rsrp.setProgressColors(context.getColor(R.color.white), Color.parseColor(RSRP_COLORS[5]));
+            holder.signalListItemBinding.rsrp.setProgressColors(context.getColor(R.color.progress_back), Color.parseColor(RSRP_COLORS[5]));
 
         } else if (signalStatus.getRSRP() >= -60) {
-            holder.signalListItemBinding.rsrp.setProgressColors(context.getColor(R.color.white), Color.parseColor(RSRP_COLORS[6]));
+            holder.signalListItemBinding.rsrp.setProgressColors(context.getColor(R.color.progress_back), Color.parseColor(RSRP_COLORS[6]));
 
         }
 
@@ -94,19 +94,19 @@ public class SignalAdapter extends RecyclerView.Adapter<SignalAdapter.MyViewHold
         holder.signalListItemBinding.rsrq.setProgress(signalStatus.getRSRQ() + TRANSFER_TO_POSITIVE);
         holder.signalListItemBinding.rsrqText.setText(String.valueOf(signalStatus.getRSRQ()));
         if (signalStatus.getRSRQ() <= -19.5) {
-            holder.signalListItemBinding.rsrq.setProgressColors(context.getColor(R.color.white), Color.parseColor(RSRQ_COLORS[0]));
+            holder.signalListItemBinding.rsrq.setProgressColors(context.getColor(R.color.progress_back), Color.parseColor(RSRQ_COLORS[0]));
 
         } else if (signalStatus.getRSRQ() > -19.5 && signalStatus.getRSRQ() <= -14) {
-            holder.signalListItemBinding.rsrq.setProgressColors(context.getColor(R.color.white), Color.parseColor(RSRQ_COLORS[1]));
+            holder.signalListItemBinding.rsrq.setProgressColors(context.getColor(R.color.progress_back), Color.parseColor(RSRQ_COLORS[1]));
 
         } else if (signalStatus.getRSRQ() > -14 && signalStatus.getRSRQ() <= -9) {
-            holder.signalListItemBinding.rsrq.setProgressColors(context.getColor(R.color.white), Color.parseColor(RSRQ_COLORS[2]));
+            holder.signalListItemBinding.rsrq.setProgressColors(context.getColor(R.color.progress_back), Color.parseColor(RSRQ_COLORS[2]));
 
         } else if (signalStatus.getRSRQ() > -9 && signalStatus.getRSRQ() < -3) {
-            holder.signalListItemBinding.rsrq.setProgressColors(context.getColor(R.color.white), Color.parseColor(RSRQ_COLORS[3]));
+            holder.signalListItemBinding.rsrq.setProgressColors(context.getColor(R.color.progress_back), Color.parseColor(RSRQ_COLORS[3]));
 
         } else if (signalStatus.getRSRQ() >= -3) {
-            holder.signalListItemBinding.rsrq.setProgressColors(context.getColor(R.color.white), Color.parseColor(RSRQ_COLORS[4]));
+            holder.signalListItemBinding.rsrq.setProgressColors(context.getColor(R.color.progress_back), Color.parseColor(RSRQ_COLORS[4]));
 
         }
 
@@ -115,29 +115,29 @@ public class SignalAdapter extends RecyclerView.Adapter<SignalAdapter.MyViewHold
         holder.signalListItemBinding.sinrText.setText(String.valueOf(signalStatus.getSINR()));
 
         if (signalStatus.getSINR() <= 0) {
-            holder.signalListItemBinding.sinr.setProgressColors(context.getColor(R.color.white), Color.parseColor(SINR_COLORS[0]));
+            holder.signalListItemBinding.sinr.setProgressColors(context.getColor(R.color.progress_back), Color.parseColor(SINR_COLORS[0]));
 
         } else if (signalStatus.getSINR() > 0 && signalStatus.getSINR() <= 5) {
-            holder.signalListItemBinding.sinr.setProgressColors(context.getColor(R.color.white), Color.parseColor(SINR_COLORS[1]));
+            holder.signalListItemBinding.sinr.setProgressColors(context.getColor(R.color.progress_back), Color.parseColor(SINR_COLORS[1]));
 
         } else if (signalStatus.getSINR() > 5 && signalStatus.getSINR() <= 10) {
-            holder.signalListItemBinding.sinr.setProgressColors(context.getColor(R.color.white), Color.parseColor(SINR_COLORS[2]));
+            holder.signalListItemBinding.sinr.setProgressColors(context.getColor(R.color.progress_back), Color.parseColor(SINR_COLORS[2]));
 
         } else if (signalStatus.getSINR() > 10 && signalStatus.getSINR() <= 15) {
-            holder.signalListItemBinding.sinr.setProgressColors(context.getColor(R.color.white), Color.parseColor(SINR_COLORS[3]));
+            holder.signalListItemBinding.sinr.setProgressColors(context.getColor(R.color.progress_back), Color.parseColor(SINR_COLORS[3]));
 
         } else if (signalStatus.getSINR() > 15 && signalStatus.getSINR() <= 20) {
-            holder.signalListItemBinding.sinr.setProgressColors(context.getColor(R.color.white), Color.parseColor(SINR_COLORS[4]));
+            holder.signalListItemBinding.sinr.setProgressColors(context.getColor(R.color.progress_back), Color.parseColor(SINR_COLORS[4]));
 
 
         } else if (signalStatus.getSINR() > 20 && signalStatus.getSINR() <= 25) {
-            holder.signalListItemBinding.sinr.setProgressColors(context.getColor(R.color.white), Color.parseColor(SINR_COLORS[5]));
+            holder.signalListItemBinding.sinr.setProgressColors(context.getColor(R.color.progress_back), Color.parseColor(SINR_COLORS[5]));
 
         } else if (signalStatus.getSINR() > 25 && signalStatus.getSINR() < 30) {
-            holder.signalListItemBinding.sinr.setProgressColors(context.getColor(R.color.white), Color.parseColor(SINR_COLORS[6]));
+            holder.signalListItemBinding.sinr.setProgressColors(context.getColor(R.color.progress_back), Color.parseColor(SINR_COLORS[6]));
 
         } else if (signalStatus.getSINR() >= 30) {
-            holder.signalListItemBinding.sinr.setProgressColors(context.getColor(R.color.white), Color.parseColor(SINR_COLORS[7]));
+            holder.signalListItemBinding.sinr.setProgressColors(context.getColor(R.color.progress_back), Color.parseColor(SINR_COLORS[7]));
 
         }
     }

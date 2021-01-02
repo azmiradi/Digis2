@@ -87,7 +87,6 @@ public class SignalAdapter extends RecyclerView.Adapter<SignalAdapter.MyViewHold
 
         } else if (signalStatus.getRSRP() >= -60) {
             holder.signalListItemBinding.rsrp.setProgressColors(context.getColor(R.color.progress_back), Color.parseColor(RSRP_COLORS[6]));
-
         }
 
         // RSRQ Initialization value
@@ -111,11 +110,11 @@ public class SignalAdapter extends RecyclerView.Adapter<SignalAdapter.MyViewHold
         }
 
         // SINR Initialization value
-        holder.signalListItemBinding.sinr.setProgress(signalStatus.getSINR());
+        holder.signalListItemBinding.sinr.setProgress(signalStatus.getSINR()+TRANSFER_TO_POSITIVE);
         holder.signalListItemBinding.sinrText.setText(String.valueOf(signalStatus.getSINR()));
 
         if (signalStatus.getSINR() <= 0) {
-            holder.signalListItemBinding.sinr.setProgressColors(context.getColor(R.color.progress_back), Color.parseColor(SINR_COLORS[0]));
+             holder.signalListItemBinding.sinr.setProgressColors(context.getColor(R.color.progress_back), Color.parseColor(SINR_COLORS[0]));
 
         } else if (signalStatus.getSINR() > 0 && signalStatus.getSINR() <= 5) {
             holder.signalListItemBinding.sinr.setProgressColors(context.getColor(R.color.progress_back), Color.parseColor(SINR_COLORS[1]));

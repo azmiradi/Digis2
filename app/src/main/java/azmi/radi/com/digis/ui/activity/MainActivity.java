@@ -27,6 +27,8 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -77,27 +79,27 @@ public class MainActivity extends AppCompatActivity {
         RSRQvalues = new ArrayList<>();
         SINRvalues = new ArrayList<>();
            // Set up the RecyclerView
-        binding.recyclerView.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        binding.recyclerView.setLayoutManager(linearLayoutManager);
+         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+          binding.recyclerView.setLayoutManager(linearLayoutManager);
         signalStatuses = new ArrayList<>();
-        adapter = new SignalAdapter(signalStatuses,this);
+           adapter = new SignalAdapter(signalStatuses,this);
         binding.recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-    }
+         adapter.notifyDataSetChanged();
+
+     }
 
     private void callSignal() {
         signalViewModel.getSignal().observe(this, signalStatus -> {
             // get Time
             Calendar c=Calendar.getInstance();
-            if (signalStatuses.size() == 0) {
+             if (signalStatuses.size() == 0) {
                 signalStatuses.add(signalStatus);
                 adapter.notifyDataSetChanged();
             } else {
                 signalStatuses.add(signalStatus);
                 adapter.notifyItemInserted(signalStatuses.size() - 1);
-
-            }
+                 binding.recyclerView.smoothScrollToPosition(signalStatuses.size() - 1);
+             }
             RSRPvalues.add(new Entry(time.size(), signalStatus.getRSRP()));
             RSRQvalues.add(new Entry(time.size(), signalStatus.getRSRQ()));
             SINRvalues.add(new Entry(time.size(), signalStatus.getSINR()));
@@ -109,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
            {
                addChart();
            }
-           else if (RSRPvalues.size()<15)
+           else
            {
               updateCharts();
            }
@@ -157,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
     private void addChart() {
         rsrpChart.resetTracking();
         ArrayList<ILineDataSet> rsrpDataSetList = new ArrayList<>();
-        rsrpDataSet= new LineDataSet(RSRPvalues,"RSRP");
+        rsrpDataSet= new LineDataSet(RSRPvalues,getString(R.string.rsrp));
         rsrpDataSet.setLineWidth(2.5f);
         rsrpDataSet.setCircleRadius(4f);
         rsrpDataSet.setColor(R.color.red);
@@ -169,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
 
         rsrqChart.resetTracking();
         ArrayList<ILineDataSet> rsrqDataSetList = new ArrayList<>();
-        rsrqDataSet= new LineDataSet(RSRQvalues,"RSRQ");
+        rsrqDataSet= new LineDataSet(RSRQvalues,getString(R.string.rsrq));
         rsrqDataSet.setLineWidth(2.5f);
         rsrqDataSet.setCircleRadius(4f);
         rsrqDataSet.setColor(R.color.green);
@@ -181,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
 
         sinrChart.resetTracking();
         ArrayList<ILineDataSet> sinrDataSetList = new ArrayList<>();
-        sinrDataSet= new LineDataSet(SINRvalues,"SINR");
+        sinrDataSet= new LineDataSet(SINRvalues,getString(R.string.sinr));
         sinrDataSet.setLineWidth(2.5f);
         sinrDataSet.setCircleRadius(4f);
         sinrDataSet.setColor(R.color.blue);
@@ -201,7 +203,6 @@ public class MainActivity extends AppCompatActivity {
                 getResources().getDrawable(R.drawable.menu,getTheme()), // Menu open icon
                 getResources().getDrawable(R.drawable.close_menu,getTheme()))); // Menu close icon
     }
-
     @Override
     protected void onPause() {
         super.onPause();

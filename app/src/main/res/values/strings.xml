@@ -4,4 +4,7 @@
     <string name="charts">Charts</string>
     <string name="stop_get">Data fetching has been stopped</string>
     <string name="zero">0</string>
+    <string name="rsrp">RSRP</string>
+    <string name="rsrq">RSRQ</string>
+    <string name="sinr">SINR</string>
 </resources>

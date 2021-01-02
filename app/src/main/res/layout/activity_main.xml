@@ -13,42 +13,53 @@
         android:clipChildren="false"
         android:clipToPadding="false"
         tools:context=".ui.activity.MainActivity">
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:background="@color/black"
-            android:weightSum="3"
-            android:layout_marginTop="5dp"
+             android:background="@color/black"
+            android:layout_marginTop="@dimen/_5sdp"
             android:paddingTop="?attr/actionBarSize">
 
-                <com.github.mikephil.charting.charts.LineChart
-                    android:id="@+id/rsrp"
-                    android:layout_width="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/white"
-                    android:layout_height="match_parent"
-                    />
-                <com.github.mikephil.charting.charts.LineChart
-                    android:id="@+id/rsrq"
-                    android:layout_width="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/white"
-                    android:layout_marginTop="5dp"
-                    android:layout_height="match_parent"
-                    />
-                <com.github.mikephil.charting.charts.LineChart
-                    android:id="@+id/sinr"
-                    android:background="@color/white"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginTop="5dp"
-                    />
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/rsrp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/rsrq"
+                android:layout_marginBottom="@dimen/_5sdp"
 
-         </LinearLayout>
+                />
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/rsrq"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rsrp"
+                app:layout_constraintBottom_toTopOf="@id/sinr"
+                android:layout_marginBottom="@dimen/_5sdp"
+
+                />
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/sinr"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rsrq"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -68,77 +79,80 @@
                 app:navigationIcon="@drawable/menu"
                 app:title="@string/app_name" />
         </com.google.android.material.appbar.AppBarLayout>
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:orientation="vertical"
-          android:id="@+id/counter"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:id="@+id/counter"
+            android:layout_marginTop="?attr/actionBarSize">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:background="@color/black"
+                android:layout_height="wrap_content"
+                android:id="@+id/header"
+                >
+                <TextView
+                    android:id="@+id/rsrp_text"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textSize="@dimen/_15ssp"
+                    android:text="@string/rsrp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:textStyle="bold"
+                    android:padding="@dimen/_5sdp"
+                    android:background="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/rsrq_text"
+                    app:layout_constraintTop_toTopOf="parent"/>
+                <TextView
+                    android:id="@+id/rsrq_text"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"                      android:layout_height="match_parent"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:text="@string/rsrq"
+                    android:padding="5dp"
+                    android:textSize="@dimen/_15ssp"
+                    android:textStyle="bold"
+                    android:background="@color/black"
+                    app:layout_constraintLeft_toRightOf="@+id/sinr_text"
+                    app:layout_constraintRight_toLeftOf="@id/rsrp_text"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+                <TextView
+                    android:id="@+id/sinr_text"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:text="@string/sinr"
+                    android:textSize="@dimen/_15ssp"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    android:background="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/rsrq_text"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-          android:layout_marginTop="?attr/actionBarSize"
-          >
-          <LinearLayout
-              android:layout_width="match_parent"
-              android:weightSum="3"
-               android:background="@color/black"
-              android:layout_height="wrap_content"
-              android:orientation="horizontal">
-                  <TextView
-                      android:layout_height="match_parent"
-                      android:textColor="@color/white"
-                      android:gravity="center"
-                      android:text="RSRP"
-                      android:layout_weight="1"
-                      android:layout_width="0dp"
-                       android:textSize="15dp"
-                      android:textStyle="bold"
-                      android:padding="5dp"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@color/white"
+                android:elevation="8dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
-                      android:background="@color/black"
-                      />
-
-                  <TextView
-                      android:layout_weight="1"
-                      android:layout_width="0dp"                      android:layout_height="match_parent"
-                      android:textColor="@color/white"
-                      android:gravity="center"
-                      android:text="RSRQ"
-                      android:id="@+id/rsrq_text"
-                      android:padding="5dp"
-
-                      android:textSize="15dp"
-                      android:textStyle="bold"
-                       android:background="@color/black"
-
-                      />
-
-
-                  <TextView
-                      android:layout_weight="1"
-                      android:layout_width="0dp"                      android:layout_height="match_parent"
-                      android:textColor="@color/white"
-                      android:gravity="center"
-                      android:text="SINR"
-                      android:id="@+id/sinr_text"
-                      android:textSize="15dp"
-                      android:padding="5dp"
-                      android:textStyle="bold"
-                       android:background="@color/black"
-
-                      />
-
-
-
-          </LinearLayout>
-          <androidx.recyclerview.widget.RecyclerView
-              android:id="@+id/recycler_view"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-               android:background="@color/white"
-              android:elevation="8dp"
-              app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-          </androidx.recyclerview.widget.RecyclerView>
-
-      </LinearLayout>
-           </FrameLayout>
+            </androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+        </FrameLayout>
 </layout>

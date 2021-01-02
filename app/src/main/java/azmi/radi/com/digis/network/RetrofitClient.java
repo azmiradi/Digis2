@@ -12,7 +12,7 @@ import static azmi.radi.com.digis.constants.Constants.BASE_URL;
 
 public class RetrofitClient {
     private static Retrofit retrofit;
-
+private RetrofitClient(){}
     public static ApiDataService getService() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         OkHttpClient client = new OkHttpClient.Builder()
